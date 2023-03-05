@@ -1,0 +1,169 @@
+html, body{
+ width: 100%;
+ /* height:100%; */
+}
+
+.vh-100{
+    height:100vh
+}
+.vh-75{
+    height:75vh
+}
+.vh-50{
+    height:50vh
+}
+.vh-25{
+    height:25vh
+}
+
+/* #navbar {
+    position: fixed;
+    width: 100%;
+    height:58px;
+    top:0;
+    z-index: 100;
+}
+
+#navbar .navbar-brand{
+    position: absolute;
+    top:0;
+} */
+
+#navbar-category-title{
+    overflow-y: hidden;
+    font-size: 1.5rem;
+    padding-top: 42px;
+    height:42px;
+    position: relative;
+}
+
+#navbar-category-title div.title{
+    position: relative;
+}
+
+#navbarTogglerDemo02{
+    z-index: 100;
+    /* position:absolute;
+    margin-top:50px;
+    top:0;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height:100vh; */
+}
+
+/* #navbar.expanded{
+    opacity: 1 !important;
+} */
+
+.float-right{
+    float: right;
+}
+
+@keyframes navbar-hide {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -56px;
+    }
+}
+@keyframes navbar-show {
+    from {
+        top: -56px;
+    }
+    to {
+        top: 0px;
+    }
+}
+/* 
+#navbar.hide {
+    animation-name: navbar-hide;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards
+}
+#navbar.show {
+    animation-name: navbar-show;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards
+}
+
+#navbar .right-menu{
+    display:flex
+} */
+
+.modal-body{
+    overflow-y: auto;
+}
+
+.modal.modal-right .modal-dialog{
+    height:100vh;
+}
+
+.modal.modal-right .modal-dialog{
+    margin-top:0;
+    margin-bottom:0;
+    margin-right:0;
+    margin-left:auto;
+}
+
+.modal.modal-right .modal-content{
+    height: 100%;
+}
+
+.modal.modal-right .modal-footer{
+    padding:0
+}
+
+.modal.modal-right .modal.fade .modal-dialog{
+    transform: translate(0,0);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.more-text{
+    color:lightgray;
+    font-size: 0.7rem;
+}
+
+.text-gray{
+    color:gray;
+}
+
+.bg-main{
+    background-color:#1DAB98 !important ;
+}
+.bg-main-light{
+    background-color:#4abcad !important ;
+}
+.bg-main-dark{
+    background-color:#17897a !important ;
+}
+.border-main-light{
+    border-color:#4abcad !important ;
+}
+
+.btn-main{
+    background-color:#1DAB98  ;
+    border-color:#17897a ;
+    color:white;
+}
+
+.border-main{
+    border-color: #17897a;
+}
+
+.btn-outline-main{
+    border-color: #17897a;
+    color:#17897a;
+}

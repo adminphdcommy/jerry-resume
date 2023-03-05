@@ -1,0 +1,82 @@
+.section-left p.desc {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-left div.desc {
+    font-size: 0.75rem;
+}
+
+.section-left p.desc {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-left div.desc {
+    font-size: 0.9rem;
+}
+
+.timeline-wrapper {
+    position: relative;
+}
+
+.timeline-section::before {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border: 1px solid white;
+    border-radius: 50%;
+    content: "";
+    left: -5px;
+    top: 3px;
+}
+
+.timeline-wrapper.dark-mode .timeline-section::before{
+    border: 1px solid rgb(177, 173, 199);
+}
+
+.timeline-wrapper.dark-mode .timeline-section-content::before{
+    border-left: 1px solid rgb(177, 173, 199);
+}
+
+.timeline-section-content::before {
+    border-left: 1px solid white;
+    position: absolute;
+    content: "";
+    bottom: 8px;
+    height: calc(100% - 27px);
+    left: 0px;
+}
+
+.experience-section .fa{
+    min-width: 20px;
+    display:inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+}
+
+.experience-section .desc div{
+    display:inline-block;
+    max-width: calc(100% - 60px);
+}
+
+.text-gray {
+    color: gray
+}
+
+.text-lightgray {
+    color: lightgray
+}
+
+.section-right .name{
+    font-size: 4rem;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+
+.section-right .title{
+    display: inline-block;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color:rgb(57, 61, 107)
+}
