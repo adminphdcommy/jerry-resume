@@ -4618,8 +4618,200 @@
         }
     </style>
     <style>
-        .card:hover {
-            border-color: rgb(19, 60, 113) !important;
+        :root {
+            --background: #f7fbfd;
+            --foreground: #080570;
+            --card: rgba(255, 255, 255, 0.9);
+            --card-foreground: #080570;
+            --primary: #080570;
+            --primary-foreground: #ffffff;
+            --secondary: #d4ecf4;
+            --secondary-foreground: #080570;
+            --accent: #1e879f;
+            --accent-foreground: #ffffff;
+            --muted: #eef5f7;
+            --muted-foreground: rgba(8, 5, 112, 0.66);
+            --border: rgba(8, 5, 112, 0.12);
+            --ring: #080570;
+            --shadow-lg: 0 24px 60px rgba(8, 5, 112, 0.14);
+            --shadow-md: 0 12px 30px rgba(8, 5, 112, 0.1);
+        }
+
+        body {
+            font-family: "Avenir Next", "Segoe UI", sans-serif;
+            color: var(--foreground);
+            background:
+                radial-gradient(circle at top left, rgba(212, 236, 244, 0.95), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(30, 135, 159, 0.16), transparent 22%),
+                linear-gradient(155deg, #ffffff 0%, #f4fbfd 45%, #eaf7fb 100%);
+        }
+
+        #container {
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #container::before,
+        #container::after {
+            content: "";
+            position: fixed;
+            border-radius: 999px;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(12px);
+            opacity: 0.55;
+        }
+
+        #container::before {
+            top: -6rem;
+            right: -5rem;
+            width: 18rem;
+            height: 18rem;
+            background: radial-gradient(circle, rgba(30, 135, 159, 0.22) 0%, rgba(30, 135, 159, 0) 72%);
+        }
+
+        #container::after {
+            bottom: -8rem;
+            left: -6rem;
+            width: 22rem;
+            height: 22rem;
+            background: radial-gradient(circle, rgba(8, 5, 112, 0.14) 0%, rgba(8, 5, 112, 0) 74%);
+        }
+
+        .cv-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1120px !important;
+            padding: 2rem 1.25rem !important;
+        }
+
+        .bg-background {
+            background: transparent !important;
+        }
+
+        .bg-card {
+            background: var(--card) !important;
+        }
+
+        .text-card-foreground,
+        .text-secondary-foreground,
+        .text-blue-600 {
+            color: var(--foreground) !important;
+        }
+
+        .text-muted-foreground {
+            color: var(--muted-foreground) !important;
+        }
+
+        .border,
+        .bg-border {
+            border-color: var(--border) !important;
+            background-color: var(--border) !important;
+        }
+
+        [data-slot="card"] {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border) !important;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 252, 253, 0.82)) !important;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        [data-slot="card"]::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            opacity: 0.9;
+        }
+
+        [data-slot="card"]:hover {
+            transform: translateY(-4px);
+            border-color: rgba(30, 135, 159, 0.34) !important;
+            box-shadow: var(--shadow-lg);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Iowan Old Style", "Palatino Linotype", serif;
+            color: var(--primary);
+            letter-spacing: 0.01em;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 3vw, 2.9rem);
+            line-height: 1;
+        }
+
+        h3 {
+            font-size: 1.03rem;
+        }
+
+        p,
+        li,
+        span,
+        a {
+            line-height: 1.6;
+        }
+
+        .bg-secondary {
+            background: linear-gradient(135deg, rgba(212, 236, 244, 0.95), rgba(212, 236, 244, 0.7)) !important;
+            color: var(--primary) !important;
+            border: 1px solid rgba(30, 135, 159, 0.2) !important;
+        }
+
+        [data-slot="badge"] {
+            border-radius: 999px;
+            padding: 0.35rem 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        }
+
+        img[alt="Jerry Ho"] {
+            border: 4px solid rgba(30, 135, 159, 0.18);
+            box-shadow: 0 18px 30px rgba(8, 5, 112, 0.12);
+        }
+
+        .grid.md\:grid-cols-3.gap-6 {
+            align-items: start;
+        }
+
+        .grid.grid-cols-1.md\:grid-cols-2.gap-3>div {
+            padding: 0.65rem 0.85rem;
+            border: 1px solid rgba(8, 5, 112, 0.08);
+            border-radius: 0.9rem;
+            background: rgba(212, 236, 244, 0.28);
+        }
+
+        a.hover\:underline:hover,
+        .text-blue-600:hover {
+            color: var(--accent) !important;
+            text-decoration-color: var(--accent);
+        }
+
+        .mb-6.print-break-inside-avoid {
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media screen and (max-width: 768px) {
+            .cv-container {
+                padding: 1rem 0.85rem !important;
+            }
+
+            [data-slot="card"] {
+                backdrop-filter: none;
+            }
+
+            .grid.grid-cols-1.md\:grid-cols-2.gap-3>div {
+                padding: 0.6rem 0.75rem;
+            }
         }
     </style>
 
@@ -5050,39 +5242,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div data-slot="card"
-                                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border print-spacing print-break-inside-avoid">
-                                        <div data-slot="card-header"
-                                            class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
-                                            <h4 data-slot="card-title" class="leading-none">Education</h4>
-                                        </div>
-                                        <div data-slot="card-content" class="px-6 [&amp;:last-child]:pb-6 space-y-4">
-                                            <div class="flex justify-between items-start">
-                                                <div>
-                                                    <h3>Certification, Full-Stack Web Development</h3>
-                                                    <p class="text-muted-foreground">Brickfields Asia College – Kuala
-                                                        Lumpur, Malaysia</p>
-                                                    <p class="text-muted-foreground">Frontend: HTML, CSS, JavaScript,
-                                                        Angular</p>
-                                                    <p class="text-muted-foreground">Backend: Node.js, Express |
-                                                        Database: MongoDB, SQL</p>
-                                                    <p class="text-muted-foreground">Cloud Deployment: Compute, Load
-                                                        Balancer, NAT, Storage</p>
-                                                </div><span class="text-muted-foreground">2017 – 2018</span>
-                                            </div>
-                                            <div data-orientation="horizontal" role="none" data-slot="separator-root"
-                                                class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
-                                            </div>
-                                            <div class="flex justify-between items-start">
-                                                <div>
-                                                    <h3>Diploma, Investments &amp; Securities</h3>
-                                                    <p class="text-muted-foreground">Tunku Abdul Rahman University of
-                                                        Management and Technology – Malaysia</p>
-                                                </div><span class="text-muted-foreground">2010 – 2012</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <div class="space-y-6">
                                     <div data-slot="card"
@@ -5205,6 +5364,38 @@
                                                     class="text-muted-foreground">6/10 </span></div>
                                             <div class="flex justify-between"><span>Bahasa Malaysia</span><span
                                                     class="text-muted-foreground">6/10</span></div>
+                                        </div>
+                                    </div>
+                                    <div data-slot="card"
+                                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border print-spacing print-break-inside-avoid">
+                                        <div data-slot="card-header"
+                                            class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+                                            <h4 data-slot="card-title" class="leading-none">Education</h4>
+                                        </div>
+                                        <div data-slot="card-content" class="px-6 [&amp;:last-child]:pb-6 space-y-4">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h3>Certification, Full-Stack Web Development</h3>
+                                                    <p class="text-muted-foreground">Brickfields Asia College – Kuala
+                                                        Lumpur, Malaysia</p>
+                                                    <p class="text-muted-foreground">Frontend: HTML, CSS, JavaScript,
+                                                        Angular</p>
+                                                    <p class="text-muted-foreground">Backend: Node.js, Express |
+                                                        Database: MongoDB, SQL</p>
+                                                    <p class="text-muted-foreground">Cloud Deployment: Compute, Load
+                                                        Balancer, NAT, Storage</p>
+                                                </div><span class="text-muted-foreground">2017 – 2018</span>
+                                            </div>
+                                            <div data-orientation="horizontal" role="none" data-slot="separator-root"
+                                                class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
+                                            </div>
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h3>Diploma, Investments &amp; Securities</h3>
+                                                    <p class="text-muted-foreground">Tunku Abdul Rahman University of
+                                                        Management and Technology – Malaysia</p>
+                                                </div><span class="text-muted-foreground">2010 – 2012</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
