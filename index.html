@@ -228,7 +228,7 @@
         }
 
         .pdf-only {
-            display: none;
+            display: none !important;
         }
 
         body.keynote-mode .executive-view {
@@ -274,7 +274,7 @@
         }
 
         .hero-content,
-        .portrait-wrap {
+        .portrait-card {
             position: relative;
             z-index: 1;
         }
@@ -300,6 +300,41 @@
 
         .hero .eyebrow {
             color: #8ee2d8;
+        }
+
+        .profile-name,
+        .profile-role,
+        .profile-role-line,
+        .profile-location {
+            display: block;
+        }
+
+        .portrait-card .hero-identity {
+            padding: 16px 10px 10px;
+        }
+
+        .portrait-card .hero-identity .profile-name {
+            margin-bottom: 7px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .portrait-card .hero-identity .profile-role {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.76rem;
+            font-weight: 650;
+            line-height: 1.45;
+        }
+
+        .profile-location {
+            margin-top: 9px;
+            color: #8ee2d8;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .hero-subtitle {
@@ -339,10 +374,58 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .portrait-wrap {
+        .icon-action {
+            display: inline-grid;
+            width: 43px;
+            height: 43px;
+            padding: 0;
+            place-items: center;
+            flex: 0 0 auto;
+        }
+
+        .icon-action svg,
+        .website-action svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .website-action {
+            gap: 7px;
+        }
+
+        .copy-email {
+            position: relative;
+        }
+
+        .copy-email::after {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            z-index: 10;
+            padding: 7px 10px;
+            color: white;
+            background: #081b2d;
+            border-radius: 7px;
+            content: attr(data-tooltip);
+            font-size: 0.7rem;
+            line-height: 1;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 5px);
+            transition: opacity 150ms ease, transform 150ms ease;
+            white-space: nowrap;
+        }
+
+        .copy-email:hover::after,
+        .copy-email:focus-visible::after,
+        .copy-email.is-copied::after {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        .portrait-card {
             justify-self: end;
             width: 250px;
-            aspect-ratio: 4 / 5;
             padding: 8px;
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -350,7 +433,13 @@
             transform: rotate(2deg);
         }
 
+        .portrait-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+        }
+
         .portrait {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -824,11 +913,27 @@
             border-radius: 16px;
         }
 
-        .keynote-profile p {
+        .keynote-profile .profile-identity {
             margin: 12px 4px 2px;
+        }
+
+        .keynote-profile .profile-name {
+            margin-bottom: 6px;
+            color: white;
+            font-size: 0.96rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .keynote-profile .profile-role {
             color: rgba(255, 255, 255, 0.72);
             font-size: 0.76rem;
             font-weight: 600;
+            line-height: 1.45;
+        }
+
+        .keynote-profile .profile-role-line {
+            white-space: nowrap;
         }
 
         .keynote-proof {
@@ -1067,7 +1172,7 @@
                 padding: 42px;
             }
 
-            .portrait-wrap {
+            .portrait-card {
                 width: 200px;
             }
 
@@ -1147,16 +1252,24 @@
                 padding: 28px;
             }
 
-            .portrait-wrap {
-                justify-self: start;
-                width: 120px;
-                aspect-ratio: 1;
-                border-radius: 50%;
+            .portrait-card {
+                display: grid;
+                grid-template-columns: 92px minmax(0, 1fr);
+                align-items: center;
+                justify-self: stretch;
+                width: 100%;
+                margin-top: 8px;
+                gap: 14px;
                 transform: none;
             }
 
-            .portrait {
-                border-radius: 50%;
+            .portrait-wrap {
+                width: 92px;
+                aspect-ratio: 1;
+            }
+
+            .portrait-card .hero-identity {
+                padding: 4px 8px 4px 0;
             }
 
             .metrics {
@@ -1200,8 +1313,24 @@
             }
 
             .keynote-profile {
-                justify-self: start;
-                width: 130px;
+                display: grid;
+                grid-template-columns: 92px minmax(0, 1fr);
+                align-items: center;
+                justify-self: stretch;
+                width: 100%;
+                margin-top: 24px;
+                padding: 10px;
+                gap: 14px;
+            }
+
+            .keynote-profile img {
+                width: 92px;
+                aspect-ratio: 1;
+                object-position: center top;
+            }
+
+            .keynote-profile .profile-identity {
+                margin: 0;
             }
 
             .keynote-proof {
@@ -1266,6 +1395,10 @@
                 display: inline-flex !important;
             }
 
+            .copy-email::after {
+                display: none !important;
+            }
+
             .page-shell {
                 width: 1180px;
                 max-width: none;
@@ -1287,13 +1420,17 @@
                 font-size: 2.35rem;
             }
 
-            .portrait-wrap {
+            .portrait-card {
                 justify-self: end;
                 width: 250px;
-                aspect-ratio: 4 / 5;
                 padding: 8px;
                 border-radius: 22px;
                 transform: rotate(2deg);
+            }
+
+            .portrait-wrap {
+                width: 100%;
+                aspect-ratio: 4 / 5;
             }
 
             .portrait {
@@ -1398,6 +1535,87 @@
                 display: grid;
                 grid-template-columns: minmax(0, 1fr) auto;
             }
+
+            body.keynote-mode .keynote-summary-page {
+                break-after: page;
+                break-inside: avoid-page;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-hero {
+                min-height: 330px;
+                padding: 34px;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-hero h1 {
+                margin-bottom: 12px;
+                font-size: 3.2rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-lead {
+                margin-bottom: 14px;
+                font-size: 0.92rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-profile {
+                width: 190px;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-profile .profile-role {
+                font-size: 0.64rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-proof {
+                gap: 10px;
+                margin: 14px 0 18px;
+            }
+
+            body.keynote-mode .keynote-summary-page .proof-card {
+                padding: 16px;
+            }
+
+            body.keynote-mode .keynote-summary-page .proof-card strong {
+                font-size: 1.5rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-section {
+                padding: 18px 0;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-section-heading {
+                margin-bottom: 16px;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-section-heading h2 {
+                font-size: 1.7rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .keynote-section-heading p {
+                font-size: 0.75rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .signature-card {
+                min-height: 180px;
+                padding: 20px;
+            }
+
+            body.keynote-mode .keynote-summary-page .signature-card h3 {
+                font-size: 1rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .signature-card p,
+            body.keynote-mode .keynote-summary-page .operating-card p {
+                font-size: 0.72rem;
+            }
+
+            body.keynote-mode .keynote-summary-page .operating-card {
+                padding: 20px;
+            }
+
+            body.keynote-mode .keynote-summary-page .operating-card svg {
+                margin-bottom: 16px;
+            }
         }
     </style>
 </head>
@@ -1445,15 +1663,44 @@
                 </p>
                 <div class="hero-actions">
                     <a class="action-link" href="#achievements">Explore my impact</a>
-                    <a class="action-link secondary" href="mailto:cv@jerry.my">cv@jerry.my</a>
-                    <a class="action-link secondary" href="https://www.linkedin.com/in/jerry-ho-407148129/"
-                        target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a class="action-link secondary pdf-only" href="https://cv.jerry.my" target="_blank"
-                        rel="noopener noreferrer">Visit cv.jerry.my for full details</a>
+                    <a class="action-link secondary icon-action copy-email" href="mailto:cv@jerry.my"
+                        data-tooltip="cv@jerry.my" aria-label="Start Conversation">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                            <path d="m3 7 9 6 9-6" />
+                        </svg>
+                    </a>
+                    <a class="action-link secondary icon-action" href="https://www.linkedin.com/in/jerry-ho-407148129/"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <path d="M2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a class="action-link secondary website-action pdf-only" href="https://cv.jerry.my" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+                        </svg>
+                        Visit cv.jerry.my for full details
+                    </a>
                 </div>
             </div>
-            <div class="portrait-wrap">
-                <img class="portrait" src="portrait2.png" alt="Portrait of Jerry Ho">
+            <div class="portrait-card">
+                <div class="portrait-wrap">
+                    <img class="portrait" src="portrait2.png" alt="Portrait of Jerry Ho">
+                </div>
+                <div class="hero-identity"
+                    aria-label="Jerry Ho, Senior Manager, Product Development and Management, Kuala Lumpur">
+                    <strong class="profile-name">Jerry Ho</strong>
+                    <span class="profile-role">
+                        <span class="profile-role-line">Senior Manager</span>
+                        <span class="profile-role-line">Product Development &amp; Management</span>
+                    </span>
+                    <span class="profile-location">Kuala Lumpur</span>
+                </div>
             </div>
         </header>
 
@@ -1832,9 +2079,21 @@
                     </p>
                 </div>
                 <div class="contact-row">
-                    <a class="contact-link" href="mailto:cv@jerry.my">cv@jerry.my</a>
-                    <a class="contact-link" href="https://www.linkedin.com/in/jerry-ho-407148129/" target="_blank"
-                        rel="noopener noreferrer">LinkedIn profile</a>
+                    <a class="contact-link icon-action copy-email" href="mailto:cv@jerry.my" data-tooltip="cv@jerry.my"
+                        aria-label="Start Conversation">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                            <path d="m3 7 9 6 9-6" />
+                        </svg>
+                    </a>
+                    <a class="contact-link icon-action" href="https://www.linkedin.com/in/jerry-ho-407148129/"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <path d="M2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1846,125 +2105,162 @@
     </main>
 
     <main class="page-shell keynote-view" id="keynote" aria-label="Keynote summary">
-        <header class="keynote-hero">
-            <div class="keynote-hero-copy">
-                <span class="eyebrow">Jerry Ho · Leadership Keynote</span>
-                <h1>Complex products. Clear direction. Measurable growth.</h1>
-                <p class="keynote-lead">
-                    A product and technology leader who aligns business strategy, technical architecture, and
-                    cross-functional teams to modernize platforms and unlock sustainable value.
-                </p>
-                <div class="hero-actions">
-                    <a class="action-link" href="mailto:cv@jerry.my">Start a conversation</a>
-                    <a class="action-link secondary" href="https://www.linkedin.com/in/jerry-ho-407148129/"
-                        target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a class="action-link secondary pdf-only" href="https://cv.jerry.my" target="_blank"
-                        rel="noopener noreferrer">Visit cv.jerry.my for full details</a>
-                </div>
-            </div>
-            <div class="keynote-profile">
-                <img src="portrait2.png" alt="Portrait of Jerry Ho">
-                <p>Senior Manager, Product Development &amp; Management · Kuala Lumpur</p>
-            </div>
-        </header>
-
-        <section class="keynote-proof" aria-label="Keynote proof points">
-            <div class="proof-card">
-                <strong>USD 1M+</strong>
-                <span>Value generated through product journey</span>
-            </div>
-            <div class="proof-card">
-                <strong>200+</strong>
-                <span>Partners onboarded</span>
-            </div>
-            <div class="proof-card">
-                <strong>10+</strong>
-                <span>Years of progressive experience</span>
-            </div>
-            <div class="proof-card">
-                <strong>4</strong>
-                <span>Product team members led</span>
-            </div>
-        </section>
-
-        <section class="keynote-section">
-            <div class="keynote-section-heading">
-                <div>
-                    <span class="eyebrow">Signature outcomes</span>
-                    <h2>Where strategy became measurable impact.</h2>
-                </div>
-                <p>Selected initiatives that show how I lead through ambiguity, coordinate complex execution, and
-                    deliver outcomes.</p>
-            </div>
-            <div class="signature-grid">
-                <article class="signature-card">
-                    <span class="signature-number">01 / TRANSFORM</span>
-                    <div>
-                        <h3>Modernized a legacy core platform</h3>
-                        <p>Orchestrated product, engineering, infrastructure, operations, support, and business teams
-                            through a company-wide system transformation.</p>
+        <div class="keynote-summary-page">
+            <section class="keynote-opening-slide">
+                <header class="keynote-hero">
+                    <div class="keynote-hero-copy">
+                        <span class="eyebrow">Jerry Ho · Leadership Keynote</span>
+                        <h1>Complex products. Clear direction. Measurable growth.</h1>
+                        <p class="keynote-lead">
+                            A product and technology leader who aligns business strategy, technical architecture, and
+                            cross-functional teams to modernize platforms and unlock sustainable value.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="action-link icon-action copy-email" href="mailto:cv@jerry.my"
+                                data-tooltip="cv@jerry.my" aria-label="Start Conversation">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    aria-hidden="true">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="m3 7 9 6 9-6" />
+                                </svg>
+                            </a>
+                            <a class="action-link secondary icon-action"
+                                href="https://www.linkedin.com/in/jerry-ho-407148129/" target="_blank"
+                                rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    aria-hidden="true">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <path d="M2 9h4v12H2z" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </a>
+                            <a class="action-link secondary website-action pdf-only" href="https://cv.jerry.my"
+                                target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" />
+                                    <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+                                </svg>
+                                Visit cv.jerry.my for full details
+                            </a>
+                        </div>
                     </div>
-                </article>
-                <article class="signature-card">
-                    <span class="signature-number">02 / GROW</span>
-                    <div>
-                        <h3>Scaled Premium DNS adoption</h3>
-                        <p>Launched and scaled a new product across more than 200 partners and 30,000 domains, improving
-                            reliability and recurring value.</p>
+                    <div class="keynote-profile">
+                        <img src="portrait2.png" alt="Portrait of Jerry Ho">
+                        <div class="profile-identity">
+                            <strong class="profile-name">Jerry Ho</strong>
+                            <span class="profile-role">
+                                <span class="profile-role-line">Senior Manager</span>
+                                <span class="profile-role-line">Product Development &amp; Management</span>
+                            </span>
+                            <span class="profile-location">Kuala Lumpur</span>
+                        </div>
                     </div>
-                </article>
-                <article class="signature-card">
-                    <span class="signature-number">03 / BUILD CAPABILITY</span>
-                    <div>
-                        <h3>Connected product leadership with technical depth</h3>
-                        <p>Built credibility across business and engineering through hands-on full-stack, cloud,
-                            architecture, automation, and AI experience.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
+                </header>
 
-        <section class="keynote-section">
-            <div class="keynote-section-heading">
-                <div>
-                    <span class="eyebrow">Leadership operating model</span>
-                    <h2>Three capabilities that compound.</h2>
+                <div class="keynote-proof" aria-label="Keynote proof points">
+                    <div class="proof-card">
+                        <strong>USD 1M+</strong>
+                        <span>Value generated through product journey</span>
+                    </div>
+                    <div class="proof-card">
+                        <strong>200+</strong>
+                        <span>Partners onboarded</span>
+                    </div>
+                    <div class="proof-card">
+                        <strong>10+</strong>
+                        <span>Years of progressive experience</span>
+                    </div>
+                    <div class="proof-card">
+                        <strong>4</strong>
+                        <span>Product team members led</span>
+                    </div>
                 </div>
-                <p>I work as the orchestration layer that turns competing priorities and technical complexity into
-                    aligned execution.</p>
-            </div>
-            <div class="operating-grid">
-                <article class="operating-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <circle cx="12" cy="12" r="8" />
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M12 2v3M22 12h-3M12 22v-3M2 12h3" />
-                    </svg>
-                    <h3>Product direction</h3>
-                    <p>Shape vision, strategy, portfolios, roadmaps, positioning, and go-to-market decisions around real
-                        business outcomes.</p>
-                </article>
-                <article class="operating-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />
-                    </svg>
-                    <h3>Technical fluency</h3>
-                    <p>Engage deeply with architecture, infrastructure, cloud, development, security, automation, and
-                        AI.</p>
-                </article>
-                <article class="operating-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <circle cx="6" cy="12" r="3" />
-                        <circle cx="18" cy="6" r="3" />
-                        <circle cx="18" cy="18" r="3" />
-                        <path d="m9 11 6-4M9 13l6 4" />
-                    </svg>
-                    <h3>Execution orchestration</h3>
-                    <p>Align stakeholders, unblock teams, resolve cross-domain challenges, and maintain delivery
-                        momentum under uncertainty.</p>
-                </article>
-            </div>
-        </section>
+            </section>
+
+            <section class="keynote-section keynote-signature">
+                <div class="keynote-section-heading">
+                    <div>
+                        <span class="eyebrow">Signature outcomes</span>
+                        <h2>Where strategy became measurable impact.</h2>
+                    </div>
+                    <p>Selected initiatives that show how I lead through ambiguity, coordinate complex execution, and
+                        deliver outcomes.</p>
+                </div>
+                <div class="signature-grid">
+                    <article class="signature-card">
+                        <span class="signature-number">01 / TRANSFORM</span>
+                        <div>
+                            <h3>Modernized a legacy core platform</h3>
+                            <p>Orchestrated product, engineering, infrastructure, operations, support, and business
+                                teams
+                                through a company-wide system transformation.</p>
+                        </div>
+                    </article>
+                    <article class="signature-card">
+                        <span class="signature-number">02 / GROW</span>
+                        <div>
+                            <h3>Scaled Premium DNS adoption</h3>
+                            <p>Launched and scaled a new product across more than 200 partners and 30,000 domains,
+                                improving
+                                reliability and recurring value.</p>
+                        </div>
+                    </article>
+                    <article class="signature-card">
+                        <span class="signature-number">03 / BUILD CAPABILITY</span>
+                        <div>
+                            <h3>Connected product leadership with technical depth</h3>
+                            <p>Built credibility across business and engineering through hands-on full-stack, cloud,
+                                architecture, automation, and AI experience.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="keynote-section keynote-operating">
+                <div class="keynote-section-heading">
+                    <div>
+                        <span class="eyebrow">Leadership operating model</span>
+                        <h2>Three capabilities that compound.</h2>
+                    </div>
+                    <p>I work as the orchestration layer that turns competing priorities and technical complexity into
+                        aligned execution.</p>
+                </div>
+                <div class="operating-grid">
+                    <article class="operating-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8" />
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M12 2v3M22 12h-3M12 22v-3M2 12h3" />
+                        </svg>
+                        <h3>Product direction</h3>
+                        <p>Shape vision, strategy, portfolios, roadmaps, positioning, and go-to-market decisions around
+                            real
+                            business outcomes.</p>
+                    </article>
+                    <article class="operating-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />
+                        </svg>
+                        <h3>Technical fluency</h3>
+                        <p>Engage deeply with architecture, infrastructure, cloud, development, security, automation,
+                            and
+                            AI.</p>
+                    </article>
+                    <article class="operating-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="6" r="3" />
+                            <circle cx="18" cy="18" r="3" />
+                            <path d="m9 11 6-4M9 13l6 4" />
+                        </svg>
+                        <h3>Execution orchestration</h3>
+                        <p>Align stakeholders, unblock teams, resolve cross-domain challenges, and maintain delivery
+                            momentum under uncertainty.</p>
+                    </article>
+                </div>
+            </section>
+        </div>
 
         <section class="keynote-section">
             <div class="keynote-section-heading">
@@ -2037,9 +2333,21 @@
                         ambitious ideas into scalable outcomes.</p>
                 </div>
                 <div class="contact-row">
-                    <a class="contact-link" href="mailto:cv@jerry.my">cv@jerry.my</a>
-                    <a class="contact-link" href="https://www.linkedin.com/in/jerry-ho-407148129/" target="_blank"
-                        rel="noopener noreferrer">LinkedIn</a>
+                    <a class="contact-link icon-action copy-email" href="mailto:cv@jerry.my" data-tooltip="cv@jerry.my"
+                        aria-label="Start Conversation">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                            <path d="m3 7 9 6 9-6" />
+                        </svg>
+                    </a>
+                    <a class="contact-link icon-action" href="https://www.linkedin.com/in/jerry-ho-407148129/"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <path d="M2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
@@ -2053,6 +2361,49 @@
     <script>
         const viewToggle = document.getElementById("viewToggle");
         const downloadButton = document.getElementById("downloadButton");
+        const emailAddress = "cv@jerry.my";
+
+        async function copyEmail() {
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(emailAddress);
+                    return;
+                } catch (error) {
+                    // Fall back to the legacy copy method below.
+                }
+            }
+
+            const textArea = document.createElement("textarea");
+            textArea.value = emailAddress;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.select();
+            const copied = document.execCommand("copy");
+            textArea.remove();
+
+            if (!copied) {
+                throw new Error("Unable to copy email address");
+            }
+        }
+
+        document.querySelectorAll(".copy-email").forEach((button) => {
+            button.addEventListener("click", async (event) => {
+                event.preventDefault();
+
+                try {
+                    await copyEmail();
+                    button.dataset.tooltip = "Copied: cv@jerry.my";
+                    button.classList.add("is-copied");
+                    window.setTimeout(() => {
+                        button.dataset.tooltip = emailAddress;
+                        button.classList.remove("is-copied");
+                    }, 2200);
+                } catch (error) {
+                    window.location.href = `mailto:${emailAddress}`;
+                }
+            });
+        });
 
         viewToggle.addEventListener("click", () => {
             const keynoteMode = document.body.classList.toggle("keynote-mode");
